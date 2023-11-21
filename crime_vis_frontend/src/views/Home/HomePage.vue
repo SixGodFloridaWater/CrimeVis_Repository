@@ -28,7 +28,7 @@
     </div>
   </template>
   
-  <script lang="ts" setup>
+  <script setup>
   import { ref } from 'vue'
   
   const size = ref<'default' | 'large' | 'small'>('default')
@@ -59,7 +59,7 @@
     },
   ]
   
-  const disabledDate = (time: Date) => {
+  const disabledDate = (time) => {
     return time.getTime() > Date.now()
   }
   </script>

@@ -1,16 +1,11 @@
 <template>
-  <HomePage/>
+  <router-view v-slot="{ Component }">
+    <component :is="Component"></component>
+  </router-view>
 </template>
 
-<script>
-import HomePage from './views/HomePage.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HomePage
-  }
-}
+<script setup>
+import { RouterView } from 'vue-router'
 </script>
 
 <style>
