@@ -14,8 +14,12 @@
       <section class="container">
         <!-- 左容器 -->
         <section class="itemLeft">
-          <ItemPage/>
-          <ItemPage/>
+          <ItemPage>
+            <ItemOne/>
+          </ItemPage>
+          <ItemPage>
+            <ItemThree/>
+          </ItemPage>
         </section>
         <!-- 中容器 -->
         <section class="itemCenter">
@@ -23,8 +27,12 @@
         </section>
         <!-- 右容器 -->
         <section class="itemRight">
-          <ItemPage/>
-          <ItemPage/>
+          <ItemPage>
+            <ItemTwo/>
+          </ItemPage>
+          <ItemPage>
+            <ItemFour/>
+          </ItemPage>
         </section>
       </section>
     </div>
@@ -57,9 +65,22 @@
 
   <script>
   import ItemPage from '../../components/itemPage.vue';
+  import ItemOne from '../../components/itemOne.vue';
+  import ItemTwo from '../../components/itemTwo.vue';
+  import ItemThree from '../../components/itemThree.vue';
+  import ItemFour from '../../components/itemFour.vue';
+  import {inject} from "vue";
+
   export default {
     components:{
-      ItemPage
+      ItemPage,ItemOne,ItemTwo,ItemThree,ItemFour
+    },
+
+    setup(){
+      let $echarts=inject("echarts")
+      let $http=inject("axios")
+      console.log($echarts)
+      console.log($http)
     }
   };
   // import { ref } from 'vue'
@@ -130,6 +151,10 @@
   }
   .itemCenter{
     flex: 5;
+    height: 10.5rpx;
+    border: 1px solid blue;
+    padding: 0.125rem;
+    margin: .25rem;
   }
 
   /* .demo-date-picker {
