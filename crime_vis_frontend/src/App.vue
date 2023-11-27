@@ -5,9 +5,22 @@
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
+  import { RouterView } from 'vue-router'
+
 </script>
 
+<script>
+  import {provide} from "vue"
+  import * as echarts from "echarts"
+  import axios from "axios"
+  export default{
+    setup(){
+      // provider("名字随便起","传递的内容")
+      provide("echarts",echarts)
+      provide("axios",echarts)
+    }
+  }
+</script>
 <style>
 /* 背景图的绘制 */
 body{
