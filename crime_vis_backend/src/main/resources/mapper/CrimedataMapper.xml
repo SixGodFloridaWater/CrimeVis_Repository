@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.CrimedataMapper">
+
+    <resultMap id="BaseResultMap" type="com.system.pojo.Crimedata">
+            <result property="drNo" column="DR_NO" jdbcType="INTEGER"/>
+            <result property="dateRptd" column="Date Rptd" jdbcType="VARCHAR"/>
+            <result property="dateOcc" column="DATE OCC" jdbcType="VARCHAR"/>
+            <result property="timeOcc" column="TIME OCC" jdbcType="INTEGER"/>
+            <result property="area" column="AREA" jdbcType="INTEGER"/>
+            <result property="areaName" column="AREA NAME" jdbcType="VARCHAR"/>
+            <result property="rptDistNo" column="Rpt Dist No" jdbcType="INTEGER"/>
+            <result property="part12" column="Part 1-2" jdbcType="INTEGER"/>
+            <result property="crmCd" column="Crm Cd" jdbcType="INTEGER"/>
+            <result property="crmCdDesc" column="Crm Cd Desc" jdbcType="VARCHAR"/>
+            <result property="mocodes" column="Mocodes" jdbcType="VARCHAR"/>
+            <result property="victAge" column="Vict Age" jdbcType="INTEGER"/>
+            <result property="victSex" column="Vict Sex" jdbcType="VARCHAR"/>
+            <result property="victDescent" column="Vict Descent" jdbcType="VARCHAR"/>
+            <result property="premisCd" column="Premis Cd" jdbcType="INTEGER"/>
+            <result property="premisDesc" column="Premis Desc" jdbcType="VARCHAR"/>
+            <result property="weaponUsedCd" column="Weapon Used Cd" jdbcType="INTEGER"/>
+            <result property="weaponDesc" column="Weapon Desc" jdbcType="VARCHAR"/>
+            <result property="status" column="Status" jdbcType="VARCHAR"/>
+            <result property="statusDesc" column="Status Desc" jdbcType="VARCHAR"/>
+            <result property="crmCd1" column="Crm Cd 1" jdbcType="INTEGER"/>
+            <result property="crmCd2" column="Crm Cd 2" jdbcType="INTEGER"/>
+            <result property="crmCd3" column="Crm Cd 3" jdbcType="INTEGER"/>
+            <result property="crmCd4" column="Crm Cd 4" jdbcType="VARCHAR"/>
+            <result property="location" column="LOCATION" jdbcType="VARCHAR"/>
+            <result property="crossStreet" column="Cross Street" jdbcType="VARCHAR"/>
+            <result property="lat" column="LAT" jdbcType="DOUBLE"/>
+            <result property="lon" column="LON" jdbcType="DOUBLE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        DR_NO,Date Rptd,DATE OCC,
+        TIME OCC,AREA,AREA NAME,
+        Rpt Dist No,Part 1-2,Crm Cd,
+        Crm Cd Desc,Mocodes,Vict Age,
+        Vict Sex,Vict Descent,Premis Cd,
+        Premis Desc,Weapon Used Cd,Weapon Desc,
+        Status,Status Desc,Crm Cd 1,
+        Crm Cd 2,Crm Cd 3,Crm Cd 4,
+        LOCATION,Cross Street,LAT,
+        LON
+    </sql>
+</mapper>
