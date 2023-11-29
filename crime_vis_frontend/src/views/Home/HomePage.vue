@@ -24,6 +24,9 @@
       <!-- 中容器 -->
       <section class="itemCenter">
         <MapView/>
+        <div class="slide-wrapper">
+          <SliderView/>
+        </div>
       </section>
       <!-- 右容器 -->
       <section class="itemRight">
@@ -45,6 +48,7 @@ import ItemTwo from '@/views/items/itemTwo.vue';
 import ItemThree from '@/views/items/itemThree.vue';
 import ItemFour from '@/views/items/itemFour.vue';
 import MapView from "@/views/map/MapView.vue"
+import SliderView from "@/views/component/slider.vue"
 
 // import MapView from "@/views/map/MapView.vue"
 
@@ -131,5 +135,8 @@ margin-bottom: 4px;
   border: 1px solid blue;
   padding: 0.125rem;
   margin: .25rem;
+  .slide-wrapper{
+
+  }
 }
 </style>
