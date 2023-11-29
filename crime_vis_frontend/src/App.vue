@@ -11,7 +11,7 @@ import { RouterView } from 'vue-router'
 <style>
 /* 背景图的绘制 */
 body{
-  background: url("~@/assets/bg.jpg") no-repeat center center fixed;
+  background: url("~@/assets/background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;  
   -moz-background-size: cover;  
   -o-background-size: cover;  

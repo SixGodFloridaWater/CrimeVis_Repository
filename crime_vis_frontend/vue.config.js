@@ -2,6 +2,13 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false, //是否开启eslint保存检测
+  configureWebpack: config => {
+    config.externals = {
+      "BMap": "BMap",
+      'BMap_Symbol_SHAPE_POINT':'BMap_Symbol_SHAPE_POINT',
+      'echarts':'echarts'  //之后可以在组件中直接使用echarts
+    }
+  },
   devServer: {
     open: false, //配置自动启动浏览器
     host: "localhost",
@@ -20,11 +27,5 @@ module.exports = defineConfig({
       overlay: false,
     },
   },
-  configureWebpack: config => {
-    config.externals = {
-      "BMap": "BMap",
-      'BMap_Symbol_SHAPE_POINT':'BMap_Symbol_SHAPE_POINT',
-      'echarts':'echarts'  //之后可以在组件中直接使用echarts
-    }
-  },
+  
 })
