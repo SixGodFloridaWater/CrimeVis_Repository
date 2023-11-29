@@ -20,4 +20,11 @@ module.exports = defineConfig({
       overlay: false,
     },
   },
+  configureWebpack: config => {
+    config.externals = {
+      "BMap": "BMap",
+      'BMap_Symbol_SHAPE_POINT':'BMap_Symbol_SHAPE_POINT',
+      'echarts':'echarts'  //之后可以在组件中直接使用echarts
+    }
+  },
 })
