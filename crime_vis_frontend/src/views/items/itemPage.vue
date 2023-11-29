@@ -15,7 +15,7 @@ export default {
 .item{
     height: 20rem;
     border: 1px solid blue;
-    margin: .500rem;
+    margin: .25rem;
     background-color: rgba(255, 0, 0, .15);
 }
 </style>

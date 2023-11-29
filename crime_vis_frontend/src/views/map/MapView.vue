@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width:600px;height:500px;"></div>
+  <div id="main" style="width:45vw;height:35vw;"></div>
 </template>
 
 <script>
@@ -54,15 +54,25 @@ export default {
         sublink: 'http://www.pm25.in',
         left: 'center'
       },
-      tooltip: {
-        show:false
-      },
+      // tooltip: {
+      //   show:false
+      // },
       bmap: {
         center: [-118, 34],
         zoom: 11,
         roam: true,
         mapStyle: {
           styleId: '3d71dc5a4ce6222d3396801dee06622d'
+        }
+      },
+      tooltip: {
+        backgroundColor: 'rgba(255,255,255,0.7)',
+        formatter: function (param) {
+          var value = param.value;
+          // prettier-ignore
+          return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+                    + '</div>'
+                    + '犯罪类型' + '：' + value[2] + '<br>'
         }
       },
       series: [
