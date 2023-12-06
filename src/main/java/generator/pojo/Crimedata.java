@@ -1,5 +1,6 @@
-package com.system.pojo;
+package generator.pojo;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,7 +17,7 @@ public class Crimedata implements Serializable {
     /**
      * 
      */
-    @TableId("DR_NO")
+    @TableId
     private Integer drNo;
 
     /**

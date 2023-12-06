@@ -1,15 +1,15 @@
-package com.system.service.impl;
+package generator.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.system.pojo.Crimedata;
-import com.system.service.CrimedataService;
-import com.system.mapper.CrimedataMapper;
+import generator.pojo.Crimedata;
+import generator.service.CrimedataService;
+import generator.mapper.CrimedataMapper;
 import org.springframework.stereotype.Service;
 
 /**
 * @author 21628
 * @description 针对表【crimedata】的数据库操作Service实现
-* @createDate 2023-12-06 21:13:07
+* @createDate 2023-12-06 21:08:08
 */
 @Service
 public class CrimedataServiceImpl extends ServiceImpl<CrimedataMapper, Crimedata>
