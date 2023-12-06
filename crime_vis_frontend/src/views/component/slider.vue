@@ -1,14 +1,15 @@
 <template>
   <div class="slider-demo-block">
-  <el-slider v-model="value" range :marks="marks" max="11" :show-tooltip="false"/>
+  <el-slider v-model="value" range :marks="marks" :max="11" :show-tooltip="false"/>
   </div>
-  </template>
+</template>
   
-  <script setup>
-  import { reactive, ref } from 'vue'
-  
-  const value = ref([0, 11])
-  const marks = reactive({
+<script setup>
+import { reactive, ref, watch } from 'vue'
+const { getMonth } = defineProps(['getMonth']);
+
+const value = ref([0, 11])
+const marks = reactive({
   0:'1月',
   1:'2月',
   2:'3月',
@@ -21,9 +22,14 @@
   9:'10月',
   10:'11月',
   11:'12月',
-  })
-  
-  </script>
+})
+
+
+watch(() => {
+  getMonth(value.value)
+});
+
+</script>
   
   <style scoped>
   .slider-demo-block {
