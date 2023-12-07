@@ -76,15 +76,12 @@ const selectByMonth = async()=>{
     // router.push('/home')
 }
 onMounted(() => {
-  dataSelectService(month).then((result) => {
-    crimedata.value = result.data
-    ElMessage.success(result.msg ? result.msg : '查询成功')
-    console.log(crimedata)
-  })
-});
-onMounted(() => {
   selectByMonth(month)
-    console.log(crimedata)
+  console.log(crimedata)
+});
+onUpdated(() => {
+  selectByMonth(month)
+  console.log(crimedata)
 });
 </script>
 
