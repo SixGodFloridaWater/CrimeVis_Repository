@@ -8,7 +8,7 @@
 import { reactive, ref, watch } from 'vue'
 const { getMonth } = defineProps(['getMonth']);
 
-const value = ref([0, 11])
+const value = ref([0, 0])
 const marks = reactive({
   0:'1月',
   1:'2月',
@@ -23,7 +23,6 @@ const marks = reactive({
   10:'11月',
   11:'12月',
 })
-
 
 watch(() => {
   getMonth(value.value)
