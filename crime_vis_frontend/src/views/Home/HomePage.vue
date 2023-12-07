@@ -24,6 +24,9 @@
       <!-- 中容器 -->
       <section class="itemCenter">
         <MapView/>
+        <div>
+            <SliderView :getMonth="getMonth"/>
+        </div>
       </section>
       <!-- 右容器 -->
       <section class="itemRight">
@@ -44,9 +47,19 @@ import ItemOne from '@/views/items/itemOne.vue';
 import ItemTwo from '@/views/items/itemTwo.vue';
 import ItemThree from '@/views/items/itemThree.vue';
 import ItemFour from '@/views/items/itemFour.vue';
-import MapView from "@/views/map/MapView.vue"
+import MapView from "@/views/map/MapView.vue";
+import SliderView from "@/views/component/slider.vue";
+import { ref, watch } from 'vue'
 
-// import MapView from "@/views/map/MapView.vue"
+const month = ref([0, 11]);
+
+const getMonth = (value) => {
+  month.value = value;
+};
+
+watch(() => {
+  console.log(month.value)
+});
 
 </script>
 

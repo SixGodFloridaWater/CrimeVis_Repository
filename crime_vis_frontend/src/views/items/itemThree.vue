@@ -9,29 +9,7 @@
   </div>
 </template>
 
-<script>
-// import { inject,onMounted } from 'vue';
-// export default{
-//   setup(){
-//     let $echarts= inject("echarts")
-//     let $http= inject("axios")
-
-//     async function getState(){
-
-//     }
-//     onMounted(()=>{
-//       let myChart= $echarts.init(document.getElementById("Threechart"))
-
-//       myChart.setOption({
-
-//       })
-//     })
-    
-//     return {
-//       getState
-//     }
-//   }
-// }
+<script setup>
 </script>
 
 <style scoped>
