@@ -1,5 +1,6 @@
 package com.system.mapper;
 
+import com.system.pojo.Countdata;
 import com.system.pojo.Crimedata;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Select;
@@ -16,10 +17,12 @@ import java.util.List;
 @Repository
 public interface CrimedataMapper extends BaseMapper<Crimedata> {
 
-    //    @Select("SELECT * FROM user WHERE age > #{age}")
+    //    @Select("SELECT * FRO user WHERE age > #{age}")
     @Select("SELECT *  FROM crimedata WHERE MONTH(STR_TO_DATE(DATEOCC, '%m/%d/%Y %h:%i:%s %p')) = #{month} ")
-//        @Select("SELECT *  FROM crimedata  WHERE DATE_FORMAT(DATEOCC ,'%m') = #{month} ")
+//  @Select("SELECT *  FROM crimedata  WHERE DATE_FORMAT(DATEOCC ,'%m') = #{month} ")
     List<Crimedata> groupByMonth(String month);
+    @Select("SELECT LAT, LON, COUNT(PremisCd) AS X_count FROM crimedata GROUP BY LAT, LON")
+    List<Countdata> groupByLatLon();
 }
 
 
