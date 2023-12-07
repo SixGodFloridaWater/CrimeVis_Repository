@@ -1,4 +1,4 @@
-package com.system.conttoller;
+package com.system.controller;
 
 import com.system.VO.DataVO;
 import com.system.mapper.CrimedataMapper;
