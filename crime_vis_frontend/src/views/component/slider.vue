@@ -6,6 +6,7 @@
   
 <script setup>
 import { reactive, ref, watch } from 'vue'
+
 const { getMonth } = defineProps(['getMonth']);
 
 const value = ref([0, 11])
