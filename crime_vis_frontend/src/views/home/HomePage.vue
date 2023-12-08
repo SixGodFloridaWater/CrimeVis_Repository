@@ -42,25 +42,47 @@
 </template>
 
 <script setup>
+import { ref, reactive, onUpdated,onMounted } from 'vue';
+import { dataSelectService } from "@/api/data.js"
+import { ElMessage } from 'element-plus'
 import ItemPage from '@/views/items/itemPage.vue';
 import ItemOne from '@/views/items/itemOne.vue';
 import ItemTwo from '@/views/items/itemTwo.vue';
 import ItemThree from '@/views/items/itemThree.vue';
 import ItemFour from '@/views/items/itemFour.vue';
-import MapView from "@/views/map/MapView.vue";
-import SliderView from "@/views/component/slider.vue";
-import { ref, watch } from 'vue'
+import MapView from "@/views/map/MapView.vue"
+import SliderView from "@/views/component/slider.vue"
 
-const month = ref([0, 11]);
-
-const getMonth = (value) => {
-  month.value = value;
-};
-
-watch(() => {
-  console.log(month.value)
+const month = reactive({
+  monthStart:"",
+  monthEnd:"",
 });
+const crimedata = ref([])
 
+//月份选择函数
+const getMonth = (value) => {
+  month.monthStart = value[0];
+  month.monthEnd = value[1];
+  console.log(month)
+};
+// 数据请求函数
+const selectByMonth = async()=>{
+    let result = await dataSelectService(month);
+    crimedata.value = result.data
+    ElMessage.success(result.msg ? result.msg : '查询成功')
+    // // 把得到的token存储到pinia中
+    // tokenStore.setToken(result.data)
+    // // 跳转到首页
+    // router.push('/home')
+}
+onMounted(() => {
+  selectByMonth(month)
+  console.log(crimedata)
+});
+onUpdated(() => {
+  selectByMonth(month)
+  console.log(crimedata)
+});
 </script>
 
 <style scoped>

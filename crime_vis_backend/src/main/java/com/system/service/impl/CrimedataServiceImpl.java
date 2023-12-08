@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author 21628
 * @description 针对表【crimedata】的数据库操作Service实现
-* @createDate 2023-11-27 15:42:40
+* @createDate 2023-12-06 21:13:07
 */
 @Service
 public class CrimedataServiceImpl extends ServiceImpl<CrimedataMapper, Crimedata>
