@@ -35,7 +35,6 @@ watch(() => {
   align-items: center;
   }
   .slider-demo-block .el-slider {
-  margin-top: 50px;
   margin-left: 24px;
   margin-right: 24px;
   }
