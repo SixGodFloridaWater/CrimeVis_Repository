@@ -1,6 +1,6 @@
 <template>
   <div class="slider-demo-block">
-  <el-slider v-model="value" range :marks="marks" :max="8" :show-tooltip="false"/>
+  <el-slider v-model="value" range :marks="marks" :max="9" :show-tooltip="false"/>
   </div>
 </template>
   
@@ -20,6 +20,7 @@ const marks = reactive({
   6:'Jul',
   7:'Aug',
   8:'Sep',
+  9:'Oct',
 })
 
 watch(() => {
