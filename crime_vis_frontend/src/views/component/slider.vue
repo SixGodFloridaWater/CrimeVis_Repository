@@ -1,6 +1,6 @@
 <template>
   <div class="slider-demo-block">
-  <el-slider v-model="value" range :marks="marks" :max="9" :show-tooltip="false"/>
+  <el-slider v-model="value" range :marks="marks" :max="8" :show-tooltip="false"/>
   </div>
 </template>
   
@@ -11,16 +11,15 @@ const { getMonth } = defineProps(['getMonth']);
 
 const value = ref([0, 0])
 const marks = reactive({
-  0:'Jan',
-  1:'Feb',
-  2:'Mar',
-  3:'Apr',
-  4:'May',
-  5:'Jun',
-  6:'Jul',
-  7:'Aug',
-  8:'Sep',
-  9:'Oct',
+  0:'1月',
+  1:'2月',
+  2:'3月',
+  3:'4月',
+  4:'5月',
+  5:'6月',
+  6:'7月',
+  7:'8月',
+  8:'9月',
 })
 
 watch(() => {
