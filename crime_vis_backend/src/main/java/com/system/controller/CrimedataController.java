@@ -32,10 +32,6 @@ public class CrimedataController {
 
         return DataVO.success("0", result);
     }
-
-//        // 调用CrimedataMapper中的groupByMonth方法按照月份查询数据
-//        List<Crimedata> result = crimedataMapper.groupByMonth(month);
-//        return DataVO.success("0", result);
     @PostMapping("/getCount")
     public DataVO getCountdata(){
         List<Countdata> result = crimedataMapper.groupByLatLon();

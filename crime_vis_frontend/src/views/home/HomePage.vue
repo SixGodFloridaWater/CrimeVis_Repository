@@ -24,8 +24,13 @@
       <!-- 中容器 -->
       <section class="itemCenter">
         <MapView/>
-        <div>
-            <SliderView :getMonth="getMonth"/>
+        <div class="select">
+          <div class="slider">
+              <SliderView :getMonth="getMonth"/>
+          </div>
+          <div class="button">
+            <el-button :icon="Search" circle size="large" @click="selectByMonth(month)"/>
+          </div>
         </div>
       </section>
       <!-- 右容器 -->
@@ -45,6 +50,7 @@
 import { ref, reactive, onUpdated,onMounted } from 'vue';
 import { dataSelectService } from "@/api/data.js"
 import { ElMessage } from 'element-plus'
+import { Search } from '@element-plus/icons-vue'
 import ItemPage from '@/views/items/itemPage.vue';
 import ItemOne from '@/views/items/itemOne.vue';
 import ItemTwo from '@/views/items/itemTwo.vue';
@@ -70,6 +76,7 @@ const selectByMonth = async()=>{
     let result = await dataSelectService(month);
     crimedata.value = result.data
     ElMessage.success(result.msg ? result.msg : '查询成功')
+    console.log(crimedata)
     // // 把得到的token存储到pinia中
     // tokenStore.setToken(result.data)
     // // 跳转到首页
@@ -77,11 +84,6 @@ const selectByMonth = async()=>{
 }
 onMounted(() => {
   selectByMonth(month)
-  console.log(crimedata)
-});
-onUpdated(() => {
-  selectByMonth(month)
-  console.log(crimedata)
 });
 </script>
 
@@ -166,5 +168,17 @@ margin-bottom: 4px;
   border: 1px solid blue;
   padding: 0.125rem;
   margin: .25rem;
+  .select{
+    display: flex;
+    .slider{
+      margin-top: 30px;
+      flex: 9.5;
+    }
+    .button{
+      margin-top: 25px;
+      flex: 0.8;
+    }
+  }
+  
 }
 </style>
