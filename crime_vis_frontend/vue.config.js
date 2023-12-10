@@ -24,6 +24,8 @@ module.exports = defineConfig({
     config.externals = {
       "BMap": "BMap",
       'BMap_Symbol_SHAPE_POINT':'BMap_Symbol_SHAPE_POINT',
+      "BMapGL":"BMapGL",
+      "mapvgl":"mapvgl",
       'echarts':'echarts'  //之后可以在组件中直接使用echarts
     }
   },
