@@ -46,12 +46,12 @@ export default {
     },
     methods: {
         init() {
-        /* 绘制地图 */
+            /* 绘制地图 */
             this.map = new BMapGL.Map("map"); // 创建Map实例1
             //设置中心点
-            let point = new BMapGL.Point(-118.4, 34.1);
+            let point = new BMapGL.Point(-118.35, 34.1);
             //设置地图显示级别
-            this.map.centerAndZoom(point, 11);
+            this.map.centerAndZoom(point, 12);
             //设置地图能够缩放
             this.map.enableScrollWheelZoom();
             //这个是百度地图开发平台中的个性化地图，可以使用id来设置地图底层的样式
@@ -84,10 +84,12 @@ let heatmap = new mapvgl.HeatmapLayer({
     unit: "m", // 单位，m:米，px: 像素
     gradient: {
         // 对应比例渐变色
-        0.25: "rgba(0, 0, 255, 1)",
-        0.55: "rgba(0, 255, 0, 1)",
-        0.85: "rgba(255, 255, 0, 1)",
-        1: "rgba(255, 0, 0, 1)",
+        0.1: "rgba(0, 0, 255, 1)",
+        0.3: "rgba(0, 255, 0, 1)",
+        0.5: "rgba(255, 255, 0, 1)",
+        0.7: "rgba(255, 165, 0, 1)",
+        0.9: "rgba(255, 0, 0, 1)",
+        1: "rgba(139, 0, 0, 1)",
     },
 });
     view.addLayer(heatmap);
