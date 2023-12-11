@@ -23,7 +23,8 @@
       </section>
       <!-- 中容器 -->
       <section class="itemCenter">
-        <MapView/>
+        <!-- <MapViewScatter v-if="isAccepted" :data="data" :geoCoordMap="geoCoordMap"/> -->
+        <MapViewHeat v-if="isAccepted" :points="points"/>
         <div class="select">
           <div class="slider">
               <SliderView :getMonth="getMonth"/>
@@ -47,43 +48,62 @@
 </template>
 
 <script setup>
-import { ref, reactive, onUpdated,onMounted } from 'vue';
-import { dataSelectService } from "@/api/data.js"
+import { ref, reactive, onMounted } from 'vue';
+import { dataSelectService, dataCountService } from "@/api/data.js"
 import { ElMessage } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
-import ItemPage from '@/views/items/itemPage.vue';
-import ItemOne from '@/views/items/itemOne.vue';
-import ItemTwo from '@/views/items/itemTwo.vue';
-import ItemThree from '@/views/items/itemThree.vue';
-import ItemFour from '@/views/items/itemFour.vue';
-import MapView from "@/views/map/MapView.vue"
+import ItemPage from '@/views/home/items/itemPage.vue';
+import ItemOne from '@/views/home/items/itemOne.vue';
+import ItemTwo from '@/views/home/items/itemTwo.vue';
+import ItemThree from '@/views/home/items/itemThree.vue';
+import ItemFour from '@/views/home/items/itemFour.vue';
+import MapViewScatter from "@/views/map/MapView-scatter.vue"
+import MapViewHeat from "@/views/map/MapView-heat.vue"
 import SliderView from "@/views/component/slider.vue"
 
+const isAccepted = ref(false)
 const month = reactive({
   monthStart:"",
   monthEnd:"",
 });
+const points = ref([])
 const crimedata = ref([])
+const data = ref()
+const geoCoordMap = ref()
+
 
 //月份选择函数
 const getMonth = (value) => {
   month.monthStart = value[0];
   month.monthEnd = value[1];
   console.log(month)
+
 };
-// 数据请求函数
+// 按月份请求数据函数
 const selectByMonth = async()=>{
-    let result = await dataSelectService(month);
-    crimedata.value = result.data
-    ElMessage.success(result.msg ? result.msg : '查询成功')
-    console.log(crimedata)
-    // // 把得到的token存储到pinia中
-    // tokenStore.setToken(result.data)
-    // // 跳转到首页
-    // router.push('/home')
+  let result = await dataSelectService(month);
+  crimedata.value = result.data
+  ElMessage.success(result.msg ? result.msg : '查询成功')
+  console.log(crimedata)
+  isAccepted.value = true
+  data.value = crimedata.value.map(item => ({ name: item.drNo, value: 1 }))
+  geoCoordMap.value = crimedata.value.reduce((acc, item) => {
+    acc[item.drNo] = [item.lon, item.lat];
+    return acc;
+  }, {})
+}
+
+// 请求数据函数
+const countNumber = async()=>{
+  let result = await dataCountService();
+  points.value = result.data.map(item => ({ lng: item.lon, lat: item.lat, count: item.xcount }))
+  ElMessage.success(result.msg ? result.msg : '查询成功')
+  console.log(points)
+  isAccepted.value = true
 }
 onMounted(() => {
-  selectByMonth(month)
+  // selectByMonth(month)
+  countNumber()
 });
 </script>
 
@@ -160,7 +180,7 @@ margin-bottom: 4px;
 } 
 /* 设置左右在页面的份数*/
 .itemLeft,.itemRight{
-  flex: 5;
+  flex: 4;
 }
 .itemCenter{
   flex: 5;

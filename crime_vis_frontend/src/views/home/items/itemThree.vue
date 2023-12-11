@@ -5,11 +5,13 @@
     </div>
     <div class="chart" id="ThreeChart">
         <!-- 图表的容器 -->
+        <PrinterView/>
     </div>
   </div>
 </template>
 
 <script setup>
+import PrinterView from '@/views/component/printer.vue';
 </script>
 
 <style scoped>

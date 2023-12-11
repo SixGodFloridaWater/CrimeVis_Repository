@@ -7,31 +7,35 @@ import * as echarts from 'echarts';
 import 'echarts/extension/bmap/bmap';
 
 export default {
+  props:["data","geoCoordMap"],
   mounted() {
     const chartDom = document.getElementById('main');
     const myChart = echarts.init(chartDom);
+    const data = this.data;
+    const geoCoordMap = this.geoCoordMap;
+    console.log(data)
+    console.log(geoCoordMap)
+    // const data = [
+    //   { name: '海门', value: 9 },
+    //   { name: '鄂尔多斯', value: 12 },
+    //   { name: '招远', value: 12 },
+    //   { name: '舟山', value: 12 },
+    //   { name: '齐齐哈尔', value: 14 },
+    //   { name: '盐城', value: 15 },
+    //   { name: '赤峰', value: 16 },
+    //   { name: '青岛', value: 18 }
+    // ];
 
-    const data = [
-      { name: '海门', value: 9 },
-      { name: '鄂尔多斯', value: 12 },
-      { name: '招远', value: 12 },
-      { name: '舟山', value: 12 },
-      { name: '齐齐哈尔', value: 14 },
-      { name: '盐城', value: 15 },
-      { name: '赤峰', value: 16 },
-      { name: '青岛', value: 18 }
-    ];
-
-    const geoCoordMap = {
-      海门: [-118, 34],
-      鄂尔多斯: [-118.12, 34.34],
-      招远: [-118.36, 34.03],
-      舟山: [-118.4, 34.5],
-      齐齐哈尔: [-118.1, 34.24],
-      盐城: [-118.15, 34.2],
-      赤峰: [-118.87, 34.28],
-      青岛: [-118.43, 34.07]
-    };
+    // const geoCoordMap = {
+    //   海门: [-118, 34],
+    //   鄂尔多斯: [-118.12, 34.34],
+    //   招远: [-118.36, 34.03],
+    //   舟山: [-118.4, 34.5],
+    //   齐齐哈尔: [-118.1, 34.24],
+    //   盐城: [-118.15, 34.2],
+    //   赤峰: [-118.87, 34.28],
+    //   青岛: [-118.43, 34.07]
+    // };
 
     const convertData = function (data) {
       var res = [];
@@ -67,13 +71,13 @@ export default {
       },
       tooltip: {
         backgroundColor: 'rgba(255,255,255,0.7)',
-        formatter: function (param) {
-          var value = param.value;
-          // prettier-ignore
-          return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
-                    + '</div>'
-                    + '犯罪类型' + '：' + value[2] + '<br>'
-        }
+        // formatter: function (param) {
+        //   var value = param.value;
+        //   // prettier-ignore
+        //   return '<div style="border-bottom: 1px solid rgba(255,255,255,.3); font-size: 18px;padding-bottom: 7px;margin-bottom: 7px">'
+        //             + '</div>'
+        //             + '犯罪类型' + '：' + value[2] + '<br>'
+        // }
       },
       series: [
         {
