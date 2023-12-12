@@ -1,16 +1,22 @@
 <template>
   <div>
     <div class="title">
-      <h2>桑葚图</h2>
+      <h2>桑基图</h2>
     </div>
     <div class="Mulberry" id="oneChart">
-      <SankeyChart/>
+      <SankeyChart :linkdata="linkdata"/>
     </div>
   </div>
 </template>
 
 <script setup>
 import SankeyChart from "@/views/echarts/SankeyChart.vue"
+import { defineProps , watch} from 'vue';
+const props = defineProps(['linkdata']);
+
+watch(()=>{
+  console.log("itemone的watch执行",props.linkdata.part1_gun)
+}, { deep: true })
 </script>
 
 <style scoped>
