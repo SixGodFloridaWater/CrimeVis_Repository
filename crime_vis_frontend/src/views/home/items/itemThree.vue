@@ -1,17 +1,15 @@
 <template>
   <div>
-    <div class="title">
-      <h2>其他各种图表</h2>
-    </div>
+    <GraphTitle :text="title"/>
     <div class="chart" id="ThreeChart">
         <!-- 图表的容器 -->
-        <PrinterView/>
     </div>
   </div>
 </template>
 
 <script setup>
-import PrinterView from '@/views/component/printer.vue';
+import GraphTitle from "@/views/component/graphTitle.vue"
+const title = '性别雨量关系图';
 </script>
 
 <style scoped>

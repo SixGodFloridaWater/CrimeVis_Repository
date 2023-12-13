@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="title">
-      <h2>力导向图</h2>
-    </div>
+    <GraphTitle :text="title"/>
     <div class="Force-oriented" id="FourChart">
         <!-- 图表的容器 -->
         <PowerGraph/>
@@ -12,6 +10,8 @@
 
 <script setup>
 import PowerGraph from "@/views/echarts/PowerGraph.vue"
+import GraphTitle from "@/views/component/graphTitle.vue"
+const title = '犯罪类型力导向图';
 </script>
 
 <style scoped>

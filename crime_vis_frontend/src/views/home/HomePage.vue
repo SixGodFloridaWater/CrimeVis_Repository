@@ -6,7 +6,7 @@
       <div class="youjuxing"></div>
       <div class="guang"></div>
       <header>
-        <h1>洛杉矶犯罪数据洞察系统</h1>
+        <HomeTitle :text="title"/>
       </header>
     </div>
     
@@ -15,7 +15,7 @@
       <!-- 左容器 -->
       <section class="itemLeft">
         <ItemPage>
-          <ItemOne v-if="isSankey" :linkdata="linkdata"/>
+          <ItemOne :isSankey="isSankey" :linkdata="linkdata"/>
         </ItemPage>
         <ItemPage>
           <ItemThree/>
@@ -23,8 +23,17 @@
       </section>
       <!-- 中容器 -->
       <section class="itemCenter">
-        <!-- <MapViewScatter v-if="isAccepted" :data="data" :geoCoordMap="geoCoordMap"/> -->
-        <!-- <MapViewHeat v-if="isAccepted" :points="points"/> -->
+        <div class="map">
+          <el-button 
+            class="map-button"
+            type="primary"
+            @click="handleMapChange()"
+          >
+            我是按钮
+          </el-button>
+          <MapViewScatter v-if="isScatter" :data="data" :geoCoordMap="geoCoordMap"/>
+          <MapViewHeat v-if="isHeat" :points="points"/>
+        </div>
         <div class="select">
           <div class="slider">
               <SliderView :getMonth="getMonth"/>
@@ -50,7 +59,7 @@
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
 import { dataSelectService, dataCountService } from "@/api/data.js"
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElButton } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
 import ItemPage from '@/views/home/items/itemPage.vue';
 import ItemOne from '@/views/home/items/itemOne.vue';
@@ -60,9 +69,12 @@ import ItemFour from '@/views/home/items/itemFour.vue';
 import MapViewScatter from "@/views/map/MapView-scatter.vue"
 import MapViewHeat from "@/views/map/MapView-heat.vue"
 import SliderView from "@/views/component/slider.vue"
+import HomeTitle from "@/views/component/homeTitle.vue"
 
-const isSankey = ref(false)
-const isAccepted = ref(false)
+const title = '洛杉矶犯罪数据洞察系统';
+const isSankey = ref(false);
+const isScatter = ref(false);
+const isHeat = ref(false);
 const month = reactive({
   monthStart:"",
   monthEnd:"",
@@ -136,13 +148,22 @@ const linkdata = ref({
           mace_pepper_spray_JA: 1,
 })
 
-//月份选择函数
+// 月份选择函数
 const getMonth = (value) => {
   month.monthStart = value[0];
   month.monthEnd = value[1];
   console.log(month)
 
 };
+// 按钮切换函数
+const handleMapChange = ()=>{
+  if(isScatter.value){
+    countNumber();
+  }
+  if(isHeat.value){
+    selectByMonth(month);
+  }
+}
 // 按月份请求数据函数
 const selectByMonth = async()=>{
   isSankey.value = false
@@ -150,7 +171,9 @@ const selectByMonth = async()=>{
   crimedata.value = result.data
   ElMessage.success(result.msg ? result.msg : '查询成功')
   console.log(crimedata)
-  isAccepted.value = true
+  //显示散点图
+  isHeat.value = false
+  isScatter.value = true
   data.value = crimedata.value.map(item => ({ name: item.drNo, value: 1 }))
   geoCoordMap.value = crimedata.value.reduce((acc, item) => {
     acc[item.drNo] = [item.lon, item.lat];
@@ -165,7 +188,9 @@ const countNumber = async()=>{
   points.value = result.data.map(item => ({ lng: item.lon, lat: item.lat, count: item.xcount }))
   ElMessage.success(result.msg ? result.msg : '查询成功')
   console.log(points)
-  isAccepted.value = true
+  //显示热力图
+  isScatter.value = false
+  isHeat.value = true
 }
 
 function updateOptiondata(){
@@ -398,22 +423,6 @@ header{
   height: 50px;
   line-height: 46px;
 }
-/* 标题的文字样式 _洛杉矶犯罪数据洞察系统*/
-h1{
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 6px;
-  width: 100%;
-  background: linear-gradient(
-    92deg,
-    #0072ff 0%,
-    #00eaff 48.8525390625%,
-    #01aaff 100%
-  );
-  text-align: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 .title_wrap {
 height: 60px;
 background-image: url("../../assets/img/top.png");
@@ -470,6 +479,17 @@ margin-bottom: 4px;
   border: 1px solid blue;
   padding: 0.125rem;
   margin: .25rem;
+  .map{
+    width:45vw;
+    height:35vw;
+    position: relative;
+    .map-button{
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 10
+    }
+  }
   .select{
     display: flex;
     .slider{

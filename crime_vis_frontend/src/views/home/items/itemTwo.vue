@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div>
     <div class="title">
       <h2>犯罪基本信息</h2>
     </div>
@@ -10,36 +10,32 @@
       <p v-for="item in victiminfo" :key="item.id">受害人性别年龄:  {{ item.sex }}   {{ item.age }}</p>
       <p>受害者描述:   {{ victimdiscribe }}</p>
     </div>
-  </div>
-  
+  </div> -->
+  <GraphTitle :text="title"/>
 </template>
 
-<script>
+<script setup>
+import GraphTitle from "@/views/component/graphTitle.vue"
+const title = '年龄分布饼图';
+// export default{
+//   data(){
+//     return{
+//       crimedates:[{
+//         "data":"2023/10/22/",
+//         "time":"10:30",
+//       }],
+//       crimeplace:"chengdu",
+//       crimedescribe:"terrible",
+//       victiminfo:[{
+//         "id":1,
+//         "sex":"woman",
+//         "age":"18",
+//       }],
+//       victimdiscribe:"I am innocent",
+//     }
+//   },
+// }
 
-export default{
-  data(){
-    return{
-      crimedates:[{
-        "data":"2023/10/22/",
-        "time":"10:30",
-      }],
-      crimeplace:"chengdu",
-      crimedescribe:"terrible",
-      victiminfo:[{
-        "id":1,
-        "sex":"woman",
-        "age":"18",
-      }],
-      victimdiscribe:"I am innocent",
-    }
-  },
-  methods:{
-
-  },
-  watch:{
-
-  }
-}
 </script>
 
 <style scoped>

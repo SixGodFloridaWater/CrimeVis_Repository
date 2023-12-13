@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div class="title">
-      <h2>桑基图</h2>
-    </div>
+    <GraphTitle :text="title"/>
     <div class="Mulberry" id="oneChart">
-      <SankeyChart :linkdata="linkdata"/>
+      <SankeyChart v-if="isSankey" :linkdata="linkdata"/>
     </div>
   </div>
 </template>
@@ -12,14 +10,16 @@
 <script setup>
 import SankeyChart from "@/views/echarts/SankeyChart.vue"
 import { defineProps , watch} from 'vue';
-const props = defineProps(['linkdata']);
+import GraphTitle from "@/views/component/graphTitle.vue"
+const props = defineProps(['linkdata','isSankey']);
+const title = '桑基图';
 
 watch(()=>{
   console.log("itemone的watch执行",props.linkdata.part1_gun)
 }, { deep: true })
 </script>
 
-<style scoped>
+<!-- <style scoped>
 title{
   position: relative;
   text-align: center;
@@ -43,4 +43,4 @@ h2{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-</style>
+</style> -->
