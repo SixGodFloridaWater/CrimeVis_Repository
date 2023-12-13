@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { dataSelectService, dataCountService } from "@/api/data.js"
 import { ElMessage } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
@@ -57,8 +57,8 @@ import ItemOne from '@/views/home/items/itemOne.vue';
 import ItemTwo from '@/views/home/items/itemTwo.vue';
 import ItemThree from '@/views/home/items/itemThree.vue';
 import ItemFour from '@/views/home/items/itemFour.vue';
-// import MapViewScatter from "@/views/map/MapView-scatter.vue"
-// import MapViewHeat from "@/views/map/MapView-heat.vue"
+import MapViewScatter from "@/views/map/MapView-scatter.vue"
+import MapViewHeat from "@/views/map/MapView-heat.vue"
 import SliderView from "@/views/component/slider.vue"
 
 const isSankey = ref(false)
