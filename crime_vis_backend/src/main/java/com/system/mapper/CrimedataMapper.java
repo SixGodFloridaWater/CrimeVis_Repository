@@ -3,6 +3,7 @@ package com.system.mapper;
 import com.system.pojo.Countdata;
 import com.system.pojo.Crimedata;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.system.pojo.Genderdata;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +24,9 @@ public interface CrimedataMapper extends BaseMapper<Crimedata> {
     List<Crimedata> groupByMonth(String month);
     @Select("SELECT LAT, LON, COUNT(PremisCd) AS X_count FROM crimedata GROUP BY LAT, LON")
     List<Countdata> groupByLatLon();
+    @Select("SELECT DATEOCC, VictSex, COUNT(*) AS OccurrenceCount FROM crimedata GROUP BY DATEOCC, VictSex ORDER BY DATEOCC")
+    List<Genderdata>groupByDate();
+
 }
 
 
