@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from "../views/Home/HomePage.vue"
+import Gender from "@/views/gender.vue"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -22,7 +23,7 @@ const router = createRouter({
         {
             path:'/',
             name:'home',
-            component: HomeView
+            component: Gender
         }
     ]
 })

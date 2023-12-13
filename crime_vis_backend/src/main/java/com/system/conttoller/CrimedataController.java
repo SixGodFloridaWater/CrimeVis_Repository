@@ -4,6 +4,7 @@ import com.system.VO.DataVO;
 import com.system.mapper.CrimedataMapper;
 import com.system.pojo.Countdata;
 import com.system.pojo.Crimedata;
+import com.system.pojo.Genderdata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,15 @@ public class CrimedataController {
     @PostMapping("/getCount")
     public DataVO getCountdata(){
         List<Countdata> result = crimedataMapper.groupByLatLon();
+        return DataVO.success("0",result);
+    }
+
+    @PostMapping("/getGender")
+    public DataVO getGender(){
+        List<Genderdata> result = crimedataMapper.groupByDate();
+        for(Genderdata data : result) {
+            data.formatDateTime();
+        }
         return DataVO.success("0",result);
     }
 }
