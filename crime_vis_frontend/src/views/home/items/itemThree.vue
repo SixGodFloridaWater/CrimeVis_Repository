@@ -3,13 +3,18 @@
     <GraphTitle :text="title"/>
     <div class="chart" id="ThreeChart">
         <!-- 图表的容器 -->
+        <GenderView v-if="isGender" :dateocc="dateocc" :mNumber="mNumber" :fNumber="fNumber"/>
     </div>
   </div>
 </template>
 
 <script setup>
 import GraphTitle from "@/views/component/graphTitle.vue"
+import GenderView from "@/views/echarts/gender.vue"
+import { defineProps } from 'vue'
 const title = '性别雨量关系图';
+const props = defineProps(['isGender','dateocc','mNumber','fNumber']);
+
 </script>
 
 <style scoped>

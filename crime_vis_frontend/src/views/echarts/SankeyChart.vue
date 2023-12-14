@@ -8,7 +8,7 @@ import { SankeyChart } from 'echarts/charts'
 import { TitleComponent, TooltipComponent } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import VChart from "vue-echarts";
-import { ref, defineProps, onMounted, watch } from "vue";
+import { ref, defineProps } from "vue";
 
 use([TitleComponent, TooltipComponent, SankeyChart, CanvasRenderer])
 const props = defineProps(['linkdata']);
@@ -20,8 +20,8 @@ let option = ref({
   },
   series: [
     {
-      type: 'sankey',
-      data: [
+      type: 'sankey',
+      data: [
       {
       name: 'part1'
       },
@@ -82,8 +82,8 @@ let option = ref({
       {
       name: 'JO'
       },
-      ],
-      links: [
+      ],
+      links: [
       {
       source: 'part1',
       target: 'gun',
@@ -275,182 +275,178 @@ let option = ref({
       value: props.linkdata.other_knife_AO
       },
       {
-      source: 'other knife',
-      target: 'IC',
-      value: props.linkdata.other_knife_IC
+        source: 'other knife',
+        target: 'IC',
+        value: props.linkdata.other_knife_IC
       },
       {
-      source: 'other knife',
-      target: 'JA',
-      value: props.linkdata.other_knife_JA
+        source: 'other knife',
+        target: 'JA',
+        value: props.linkdata.other_knife_JA
       },
       {
-      source: 'vehicle',
-      target: 'AA',
-      value: props.linkdata.vehicle_AA
+        source: 'vehicle',
+        target: 'AA',
+        value: props.linkdata.vehicle_AA
       },
       {
-      source: 'vehicle',
-      target: 'AO',
-      value: props.linkdata.vehicle_AO
+        source: 'vehicle',
+        target: 'AO',
+        value: props.linkdata.vehicle_AO
       },
       {
-      source: 'vehicle',
-      target: 'IC',
-      value: props.linkdata.vehicle_IC
+        source: 'vehicle',
+        target: 'IC',
+        value: props.linkdata.vehicle_IC
       },
       {
-      source: 'bodily force',
-      target: 'AA',
-      value: props.linkdata.bodily_force_AA
+        source: 'bodily force',
+        target: 'AA',
+        value: props.linkdata.bodily_force_AA
       },
       {
-      source: 'bodily force',
-      target: 'AO',
-      value: props.linkdata.bodily_force_AO
+        source: 'bodily force',
+        target: 'AO',
+        value: props.linkdata.bodily_force_AO
       },
       {
-      source: 'bodily force',
-      target: 'IC',
-      value: props.linkdata.bodily_force_IC
+        source: 'bodily force',
+        target: 'IC',
+        value: props.linkdata.bodily_force_IC
       },
       {
-      source: 'bodily force',
-      target: 'JA',
-      value: props.linkdata.bodily_force_JA
+        source: 'bodily force',
+        target: 'JA',
+        value: props.linkdata.bodily_force_JA
       },
       {
-      source: 'bodily force',
-      target: 'JO',
-      value: props.linkdata.bodily_force_JO
+        source: 'bodily force',
+        target: 'JO',
+        value: props.linkdata.bodily_force_JO
       },
       {
-      source: 'unknown weapon',
-      target: 'AA',
-      value: props.linkdata.unknown_weapon_AA
+        source: 'unknown weapon',
+        target: 'AA',
+        value: props.linkdata.unknown_weapon_AA
       },
       {
-      source: 'unknown weapon',
-      target: 'AO',
-      value: props.linkdata.unknown_weapon_AO
+        source: 'unknown weapon',
+        target: 'AO',
+        value: props.linkdata.unknown_weapon_AO
       },
       {
-      source: 'unknown weapon',
-      target: 'IC',
-      value: props.linkdata.unknown_weapon_IC
+        source: 'unknown weapon',
+        target: 'IC',
+        value: props.linkdata.unknown_weapon_IC
       },
       {
-      source: 'unknown weapon',
-      target: 'JA',
-      value: props.linkdata.unknown_weapon_JA
+        source: 'unknown weapon',
+        target: 'JA',
+        value: props.linkdata.unknown_weapon_JA
       },
       {
-      source: 'unknown weapon',
-      target: 'JO',
-      value: props.linkdata.unknown_weapon_JO
+        source: 'unknown weapon',
+        target: 'JO',
+        value: props.linkdata.unknown_weapon_JO
       },
       {
-      source: 'verbal threat',
-      target: 'AA',
-      value: props.linkdata.verbal_threat_AA
+        source: 'verbal threat',
+        target: 'AA',
+        value: props.linkdata.verbal_threat_AA
       },
       {
-      source: 'verbal threat',
-      target: 'AO',
-      value: props.linkdata.verbal_threat_AO
+        source: 'verbal threat',
+        target: 'AO',
+        value: props.linkdata.verbal_threat_AO
       },
       {
-      source: 'verbal threat',
-      target: 'IC',
-      value: props.linkdata.verbal_threat_IC
+        source: 'verbal threat',
+        target: 'IC',
+        value: props.linkdata.verbal_threat_IC
       },
       {
-      source: 'verbal threat',
-      target: 'JA',
-      value: props.linkdata.verbal_threat_JA
+        source: 'verbal threat',
+        target: 'JA',
+        value: props.linkdata.verbal_threat_JA
       },
       {
-      source: 'verbal threat',
-      target: 'JO',
-      value: props.linkdata.verbal_threat_JO
+        source: 'verbal threat',
+        target: 'JO',
+        value: props.linkdata.verbal_threat_JO
       },
       {
-      source: 'mace/pepper spray',
-      target: 'AA',
-      value: props.linkdata.mace_pepper_spray_AA
+        source: 'mace/pepper spray',
+        target: 'AA',
+        value: props.linkdata.mace_pepper_spray_AA
       },
       {
-      source: 'mace/pepper spray',
-      target: 'AO',
-      value: props.linkdata.mace_pepper_spray_AO
+        source: 'mace/pepper spray',
+        target: 'AO',
+        value: props.linkdata.mace_pepper_spray_AO
       },
       {
-      source: 'mace/pepper spray',
-      target: 'IC',
-      value: props.linkdata.mace_pepper_spray_IC
+        source: 'mace/pepper spray',
+        target: 'IC',
+        value: props.linkdata.mace_pepper_spray_IC
       },
       {
-      source: 'mace/pepper spray',
-      target: 'JA',
-      value: props.linkdata.mace_pepper_spray_JA
+        source: 'mace/pepper spray',
+        target: 'JA',
+        value: props.linkdata.mace_pepper_spray_JA
       },
-      ],
-      emphasis: {
+      ],
+      emphasis: {
       focus: 'adjacency'
-      },
-      levels: [
-      {
-      depth: 0,
-      itemStyle: {
-        color: '#fbb4ae'
       },
+      levels: [
+        {
+          depth: 0,
+          itemStyle: {
+            color: '#fbb4ae'
+          },
+          lineStyle: {
+            color: 'source',
+            opacity: 0.6
+          }
+        },
+        {
+          depth: 1,
+          itemStyle: {
+            color: '#b3cde3'
+          },
+          lineStyle: {
+            color: 'source',
+            opacity: 0.6
+          }
+        },
+        {
+          depth: 2,
+          itemStyle: {
+            color: '#ccebc5'
+          },
+          lineStyle: {
+            color: 'source',
+            opacity: 0.6
+          }
+        },
+        {
+          depth: 3,
+          itemStyle: {
+            color: '#decbe4'
+          },
+          lineStyle: {
+            color: 'source',
+            opacity: 0.6
+          }
+        }
+      ],
       lineStyle: {
-        color: 'source',
-        opacity: 0.6
-      }
-      },
-      {
-      depth: 1,
-      itemStyle: {
-        color: '#b3cde3'
-      },
-      lineStyle: {
-        color: 'source',
-        opacity: 0.6
-      }
-      },
-      {
-      depth: 2,
-      itemStyle: {
-        color: '#ccebc5'
-      },
-      lineStyle: {
-        color: 'source',
-        opacity: 0.6
-      }
-      },
-      {
-      depth: 3,
-      itemStyle: {
-        color: '#decbe4'
-      },
-      lineStyle: {
-        color: 'source',
-        opacity: 0.6
-      }
-      }
-      ],
-      lineStyle: {
       curveness: 0.5
-      }
+      }
     }
     ]
 }
 );
-
-watch(()=>{
-  console.log(option.value)
-}, { deep: true })
 
 </script>
 

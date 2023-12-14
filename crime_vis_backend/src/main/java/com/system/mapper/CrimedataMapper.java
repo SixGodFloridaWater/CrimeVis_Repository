@@ -24,7 +24,7 @@ public interface CrimedataMapper extends BaseMapper<Crimedata> {
     List<Crimedata> groupByMonth(String month);
     @Select("SELECT LAT, LON, COUNT(PremisCd) AS X_count FROM crimedata GROUP BY LAT, LON")
     List<Countdata> groupByLatLon();
-    @Select("SELECT DATEOCC, VictSex, COUNT(*) AS OccurrenceCount FROM crimedata GROUP BY DATEOCC, VictSex ORDER BY DATEOCC")
+    @Select("SELECT DATEOCC, VictSex, COUNT(*) AS OccurrenceCount FROM crimedata WHERE VictSex IN ('F', 'M') GROUP BY DATEOCC, VictSex ORDER BY DATEOCC;")
     List<Genderdata>groupByDate();
 
 }

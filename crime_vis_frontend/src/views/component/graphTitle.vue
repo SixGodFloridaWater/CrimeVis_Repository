@@ -16,7 +16,6 @@ export default {
         };
     },
     created() {
-        console.log(this.text)
         // 使用电子钟表函数每隔一定时间向 `typedText` 增加一个字符
         let i = 0;
         const timer = setInterval(() => {

@@ -9,14 +9,10 @@
 
 <script setup>
 import SankeyChart from "@/views/echarts/SankeyChart.vue"
-import { defineProps , watch} from 'vue';
+import { defineProps } from 'vue';
 import GraphTitle from "@/views/component/graphTitle.vue"
 const props = defineProps(['linkdata','isSankey']);
 const title = '桑基图';
-
-watch(()=>{
-  console.log("itemone的watch执行",props.linkdata.part1_gun)
-}, { deep: true })
 </script>
 
 <!-- <style scoped>

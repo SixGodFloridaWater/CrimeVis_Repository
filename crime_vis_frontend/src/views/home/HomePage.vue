@@ -18,7 +18,7 @@
           <ItemOne :isSankey="isSankey" :linkdata="linkdata"/>
         </ItemPage>
         <ItemPage>
-          <ItemThree/>
+          <ItemFour/>
         </ItemPage>
       </section>
       <!-- 中容器 -->
@@ -27,9 +27,10 @@
           <el-button 
             class="map-button"
             type="primary"
+            size="large"
             @click="handleMapChange()"
           >
-            我是按钮
+            点击切换散点图/热力图
           </el-button>
           <MapViewScatter v-if="isScatter" :data="data" :geoCoordMap="geoCoordMap"/>
           <MapViewHeat v-if="isHeat" :points="points"/>
@@ -39,7 +40,7 @@
               <SliderView :getMonth="getMonth"/>
           </div>
           <div class="button">
-            <el-button :icon="Search" circle size="large" @click="selectByMonth(month)"/>
+            <el-button :icon="Search" circle size="large" @click="handleSearchButton()"/>
           </div>
         </div>
       </section>
@@ -49,7 +50,7 @@
           <ItemTwo/>
         </ItemPage>
         <ItemPage>
-          <ItemFour/>
+          <ItemThree :isGender="isGender" :dateocc="dateocc" :mNumber="mNumber" :fNumber="fNumber"/>
         </ItemPage>
       </section>
     </section>
@@ -58,7 +59,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue';
-import { dataSelectService, dataCountService } from "@/api/data.js"
+import { dataSelectService, dataCountService, dataGenderService } from "@/api/data.js"
 import { ElMessage, ElButton } from 'element-plus'
 import { Search } from '@element-plus/icons-vue'
 import ItemPage from '@/views/home/items/itemPage.vue';
@@ -72,17 +73,22 @@ import SliderView from "@/views/component/slider.vue"
 import HomeTitle from "@/views/component/homeTitle.vue"
 
 const title = '洛杉矶犯罪数据洞察系统';
+//graph显示标签
 const isSankey = ref(false);
+const isGender = ref(false);
 const isScatter = ref(false);
 const isHeat = ref(false);
+//月份数据
 const month = reactive({
   monthStart:"",
   monthEnd:"",
 });
 const points = ref([])
 const crimedata = ref([])
+//散点图数据
 const data = ref()
 const geoCoordMap = ref()
+//桑基图数据
 const linkdata = ref({
           part1_gun: 925,
           part1_knife: 394,
@@ -147,22 +153,43 @@ const linkdata = ref({
           mace_pepper_spray_IC: 105,
           mace_pepper_spray_JA: 1,
 })
+//性别雨量图数据
+const dateocc = ref([])
+const fNumber = ref([])
+const mNumber = ref([])
 
 // 月份选择函数
 const getMonth = (value) => {
   month.monthStart = value[0];
   month.monthEnd = value[1];
-  console.log(month)
-
+  console.log("当前选择月份",month)
 };
-// 按钮切换函数
+// 月份查询按钮函数
+const handleSearchButton = ()=>{
+  if(isScatter.value){
+    isScatter.value = false
+  }
+  selectByMonth(month)
+}
+// 地图切换按钮函数
 const handleMapChange = ()=>{
   if(isScatter.value){
     countNumber();
   }
   if(isHeat.value){
-    selectByMonth(month);
+    scatterShow();
   }
+}
+// 地图显示函数
+const scatterShow = ()=>{
+  //显示散点图
+  isHeat.value = false
+  isScatter.value = true
+}
+const heatShow = ()=>{
+  //显示热力图
+  isScatter.value = false
+  isHeat.value = true
 }
 // 按月份请求数据函数
 const selectByMonth = async()=>{
@@ -170,27 +197,39 @@ const selectByMonth = async()=>{
   let result = await dataSelectService(month);
   crimedata.value = result.data
   ElMessage.success(result.msg ? result.msg : '查询成功')
-  console.log(crimedata)
-  //显示散点图
-  isHeat.value = false
-  isScatter.value = true
+  console.log("crimedata数据",crimedata)
+  //处理散点数据
   data.value = crimedata.value.map(item => ({ name: item.drNo, value: 1 }))
   geoCoordMap.value = crimedata.value.reduce((acc, item) => {
     acc[item.drNo] = [item.lon, item.lat];
     return acc;
   }, {})
+  if(!isHeat.value){
+    isScatter.value = true
+  }
   updateOptiondata()
 }
 
-// 请求数据函数
+// 请求热力图数据函数
 const countNumber = async()=>{
   let result = await dataCountService();
   points.value = result.data.map(item => ({ lng: item.lon, lat: item.lat, count: item.xcount }))
   ElMessage.success(result.msg ? result.msg : '查询成功')
-  console.log(points)
-  //显示热力图
-  isScatter.value = false
-  isHeat.value = true
+  console.log("热力图数据",points)
+  heatShow()
+}
+
+// 请求性别数据函数
+const countGender = async()=>{
+  let result = await dataGenderService();
+  // points.value = result.data.map(item => ({ lng: item.lon, lat: item.lat, count: item.xcount }))
+  dateocc.value = Array.from(new Set(result.data.map(item => (item.dateocc))))
+  mNumber.value = result.data.filter(item => item.victSex === 'M').map(item => (item.occurrenceCount))
+  fNumber.value = result.data.filter(item => item.victSex === 'F').map(item => (item.occurrenceCount))
+  console.log("性别数据",dateocc,mNumber,fNumber)
+  ElMessage.success(result.msg ? result.msg : '查询成功')
+  //显示雨量图
+  isGender.value = true
 }
 
 function updateOptiondata(){
@@ -199,66 +238,66 @@ function updateOptiondata(){
       linkdata.value[key] = 0;
     }
     for(i = 0; i < crimedata.value.length; i++){
-      if(crimedata.value[i].part12==1){
+      if(crimedata.value[i].part12==1){
         if(crimedata.value[i].weaponusedcd==102 || crimedata.value[i].weaponusedcd==106 || crimedata.value[i].weaponusedcd==109){
-          linkdata.value.part1_gun++
+          linkdata.value.part1_gun++
         }
         if(crimedata.value[i].weaponusedcd==200 || crimedata.value[i].weaponusedcd==207){
-          linkdata.value.part1_knife++
+          linkdata.value.part1_knife++
         }
         if(crimedata.value[i].weaponusedcd==307){
-          linkdata.value.part1_vehicle++
+          linkdata.value.part1_vehicle++
         } 
         if(crimedata.value[i].weaponusedcd==400){
-          linkdata.value.part1_bodily_force++
+          linkdata.value.part1_bodily_force++
         }
         if(crimedata.value[i].weaponusedcd==500 || crimedata.value[i].weaponusedcd==511 || crimedata.value[i].weaponusedcd==512){
-          linkdata.value.part1_other_types++
+          linkdata.value.part1_other_types++
         }
-      }
-      if(crimedata.value[i].part12==2){
+      }
+      if(crimedata.value[i].part12==2){
         if(crimedata.value[i].weaponusedcd==102 || crimedata.value[i].weaponusedcd==106 || crimedata.value[i].weaponusedcd==109){
-          linkdata.value.part2_gun++
+          linkdata.value.part2_gun++
         }
         if(crimedata.value[i].weaponusedcd==200 || crimedata.value[i].weaponusedcd==207){
-          linkdata.value.part2_knife++
+          linkdata.value.part2_knife++
         }
         if(crimedata.value[i].weaponusedcd==307){
-          linkdata.value.part2_vehicle++
+          linkdata.value.part2_vehicle++
         }
         if(crimedata.value[i].weaponusedcd==400){
-          linkdata.value.part2_bodily_force++
+          linkdata.value.part2_bodily_force++
         }
         if(crimedata.value[i].weaponusedcd==500 || crimedata.value[i].weaponusedcd==511 || crimedata.value[i].weaponusedcd==512){
-          linkdata.value.part2_other_types++
+          linkdata.value.part2_other_types++
         }
-      }
+      }
     }
     for(i = 0; i < crimedata.value.length; i++){
       if(crimedata.value[i].weaponusedcd==102){
-        linkdata.value.gun_handgun++
+        linkdata.value.gun_handgun++
       }
-       if(crimedata.value[i].weaponusedcd==106){
-        linkdata.value.gun_unknown_firearm++
-      }
+      if(crimedata.value[i].weaponusedcd==106){
+        linkdata.value.gun_unknown_firearm++
+      }
       if(crimedata.value[i].weaponusedcd==109){
-        linkdata.value.gun_semi_automatic_pistol++
-      }
+        linkdata.value.gun_semi_automatic_pistol++
+      }
       if(crimedata.value[i].weaponusedcd==200){
-        linkdata.value.knife_knife_with_blade_6inches_or_less++
-      }
+        linkdata.value.knife_knife_with_blade_6inches_or_less++
+      }
       if(crimedata.value[i].weaponusedcd==207){
-        linkdata.value.knife_other_knife++
-      }
+        linkdata.value.knife_other_knife++
+      }
       if(crimedata.value[i].weaponusedcd==500){
-        linkdata.value.other_types_unknown_weapon++
-      }
+        linkdata.value.other_types_unknown_weapon++
+      }
       if(crimedata.value[i].weaponusedcd==511){
-        linkdata.value.other_types_verbal_threat++
-      }
+        linkdata.value.other_types_verbal_threat++
+      }
       if(crimedata.value[i].weaponusedcd==512){
-        linkdata.value.other_types_mace_pepper_spray++
-      }
+        linkdata.value.other_types_mace_pepper_spray++
+      }
     }
     for(i = 0; i < crimedata.value.length; i++){
       if(crimedata.value[i].status=="AA"){
@@ -404,13 +443,15 @@ function updateOptiondata(){
         }
       }
     }
-    console.log(linkdata.value)
+    console.log("武器数据",linkdata.value)
     isSankey.value = true
 }
 
 onMounted(() => {
+  countNumber()
   selectByMonth(month)
-  // countNumber()
+  countGender()
+
 });
 </script>
 
@@ -481,23 +522,23 @@ margin-bottom: 4px;
   margin: .25rem;
   .map{
     width:45vw;
-    height:35vw;
+    height:36.5vw;
     position: relative;
     .map-button{
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      z-index: 10
+      bottom: 1px;
+      left: 1px;
+      z-index: 999
     }
   }
   .select{
     display: flex;
     .slider{
-      margin-top: 30px;
+      margin-top: 20px;
       flex: 9.5;
     }
     .button{
-      margin-top: 25px;
+      margin-top: 15px;
       flex: 0.8;
     }
   }
