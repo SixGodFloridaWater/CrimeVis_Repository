@@ -14,14 +14,16 @@
   <GraphTitle :text="title"/>
   <div class="chart" id="ThreeChart">
         <!-- 图表的容器 -->
-        <NightingaleView />
+        <DoughnutView v-if="isAge" :ageData="ageData"/>
     </div>
 </template>
 
 <script setup>
+import { defineProps } from 'vue'
 import GraphTitle from "@/views/component/graphTitle.vue"
-import NightingaleView from "@/views/echarts/Nightingale.vue";
-const title = '受害者年龄分布玫瑰图';
+import DoughnutView from "@/views/echarts/Doughnut.vue";
+const props = defineProps(['isAge','ageData']);
+const title = '受害者年龄分布环形图';
 // export default{
 //   data(){
 //     return{
