@@ -466,7 +466,7 @@ header{
 }
 .title_wrap {
 height: 60px;
-background-image: url("../../assets/img/top.png");
+/* background-image: url("../../assets/img/top.png"); */
 background-size: cover;
 background-position: center center;
 position: relative;
@@ -475,7 +475,7 @@ margin-bottom: 4px;
 .guang {
   position: absolute;
   bottom: -26px;
-  background-image: url("../../assets/img/guang.png");
+  /* background-image: url("../../assets/img/guang.png"); */
   background-position: 80px center;
   width: 100%;
   height: 56px;
@@ -487,7 +487,7 @@ margin-bottom: 4px;
   top: -2px;
   width: 140px;
   height: 6px;
-  background-image: url("../../assets/img/headers/juxing1.png");
+  /* background-image: url("../../assets/img/headers/juxing1.png"); */
 }
 
 .zuojuxing {
@@ -517,7 +517,12 @@ margin-bottom: 4px;
 .itemCenter{
   flex: 5;
   height: 10.5rpx;
-  border: 1px solid blue;
+  border-width: 1px;
+  border-color: black;
+  border-sytle:solid;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* 设置边框阴影 */
+  border-color: rgba(0,0,0,0.5); /* 设置边框颜色为半透明黑色 */
   padding: 0.125rem;
   margin: .25rem;
   .map{

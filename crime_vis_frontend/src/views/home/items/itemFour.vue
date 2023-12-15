@@ -1,7 +1,7 @@
 <template>
   <div>
     <GraphTitle :text="title"/>
-    <div class="Force-oriented" id="FourChart">
+    <div class="Force-oriented" id="FourChart" style="border:4px;margin:10px ;">
         <!-- 图表的容器 -->
         <PowerGraph/>
     </div>
@@ -28,12 +28,7 @@ h2{
   font-weight: 900;
   letter-spacing: 6px;
   width: 100%;
-  background: linear-gradient(
-    92deg,
-    #0072ff 0%,
-    #00eaff 48.8525390625%,
-    #01aaff 100%
-  );
+  background: #4C1A24;
   text-align: center;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
