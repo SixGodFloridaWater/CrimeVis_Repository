@@ -10,7 +10,7 @@ let myChart = null;
 const props = defineProps(['dateocc','mNumber','fNumber']);
 const option = {
   textStyle:{
-    color:'#FFFFFF'
+    color:'#000000'
   },
   grid: {
     bottom: 80
@@ -37,9 +37,6 @@ const option = {
   legend: {
     data: ['Female', 'Male'],
     left: 10,
-    textStyle: {
-          color: '#fff' // 设置 x 轴文字颜色为白色
-        }
   },
   dataZoom: [
     {
@@ -64,7 +61,7 @@ const option = {
       data: props.dateocc,
       axisLabel: {
         textStyle: {
-          color: '#fff' // 设置 x 轴文字颜色为白色
+          color: '#000' // 设置 x 轴文字颜色为白色
         }
       }
     }
@@ -75,7 +72,7 @@ const option = {
       type: 'value',
       axisLabel: {
         textStyle: {
-          color: '#fff' // 设置 y 轴文字颜色为白色
+          color: '#000' // 设置 y 轴文字颜色为白色
         }
       }
     },
@@ -87,7 +84,7 @@ const option = {
       inverse: true,
       axisLabel: {
         textStyle: {
-          color: '#fff' // 设置 y 轴文字颜色为白色
+          color: '#000' // 设置 y 轴文字颜色为白色
         }
       }
     }

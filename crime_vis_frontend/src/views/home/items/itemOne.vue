@@ -12,7 +12,7 @@ import SankeyChart from "@/views/echarts/SankeyChart.vue"
 import { defineProps } from 'vue';
 import GraphTitle from "@/views/component/graphTitle.vue"
 const props = defineProps(['linkdata','isSankey']);
-const title = '桑基图';
+const title = '犯罪武器关联桑基图';
 </script>
 
 <!-- <style scoped>

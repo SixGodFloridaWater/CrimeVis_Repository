@@ -1,5 +1,5 @@
 <template>
-  <div id="main" style="width:45vw;height:35vw;"></div>
+  <div id="main" style="width:45vw;height:36.5vw;"></div>
 </template>
 
 <script>
@@ -58,7 +58,6 @@ mounted() {
           "color":"#FFFFFF"
       },
       subtext: 'data from Kaggle',
-      sublink: 'http://www.pm25.in',
       left: 'center'
   },
   tooltip: {

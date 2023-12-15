@@ -493,9 +493,6 @@ mounted() {
     let myChart = echarts.init(this.$refs.demoh);
     let option = {
     legend: {
-        textStyle:{
-            color:'#FFFFFF'
-        },
         data: [
         {
             name :'暴力犯罪',
@@ -567,6 +564,6 @@ mounted() {
 
 <style scoped>
 #myecharts {
-height: 19vw;
+height: 18vw;
 }
 </style>

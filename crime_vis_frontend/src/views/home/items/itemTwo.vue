@@ -12,11 +12,16 @@
     </div>
   </div> -->
   <GraphTitle :text="title"/>
+  <div class="chart" id="ThreeChart">
+        <!-- 图表的容器 -->
+        <NightingaleView />
+    </div>
 </template>
 
 <script setup>
 import GraphTitle from "@/views/component/graphTitle.vue"
-const title = '年龄分布饼图';
+import NightingaleView from "@/views/echarts/Nightingale.vue";
+const title = '受害者年龄分布玫瑰图';
 // export default{
 //   data(){
 //     return{

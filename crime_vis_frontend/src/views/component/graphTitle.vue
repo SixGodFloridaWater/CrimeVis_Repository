@@ -12,7 +12,7 @@ export default {
         // text: '我是一段需要打字机效果的文字。', // 这就是要打出来的全文
         typedText: '', // 这是已经打出来的文字
         
-        typeSpeed: 200, // 打字速度, 单位: 毫秒 
+        typeSpeed: 100, // 打字速度, 单位: 毫秒 
         };
     },
     created() {

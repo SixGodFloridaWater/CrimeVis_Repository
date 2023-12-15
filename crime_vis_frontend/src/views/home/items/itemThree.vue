@@ -10,9 +10,9 @@
 
 <script setup>
 import GraphTitle from "@/views/component/graphTitle.vue"
-import GenderView from "@/views/echarts/gender.vue"
+import GenderView from "@/views/echarts/Gender.vue"
 import { defineProps } from 'vue'
-const title = '性别雨量关系图';
+const title = '嫌疑人性别雨量关系图';
 const props = defineProps(['isGender','dateocc','mNumber','fNumber']);
 
 </script>

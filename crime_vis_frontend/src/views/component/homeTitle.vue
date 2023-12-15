@@ -31,13 +31,13 @@ export default {
 
 <style scoped>
 h1{
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: 6px;
-  width: 100%;
-  background: #4C1A24;
-  text-align: center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    width: 100%;
+    background: #4C1A24;
+    text-align: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 </style>

@@ -465,12 +465,12 @@ header{
   line-height: 46px;
 }
 .title_wrap {
-height: 60px;
+  margin-top: 5px;
+height: 50px;
 /* background-image: url("../../assets/img/top.png"); */
 background-size: cover;
 background-position: center center;
 position: relative;
-margin-bottom: 4px;
 }
 .guang {
   position: absolute;
