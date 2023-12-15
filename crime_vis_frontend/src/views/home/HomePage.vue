@@ -47,7 +47,7 @@
       <!-- 右容器 -->
       <section class="itemRight">
         <ItemPage>
-          <ItemTwo/>
+          <ItemTwo :isAge="isAge" :ageData="ageData"/>
         </ItemPage>
         <ItemPage>
           <ItemThree :isGender="isGender" :dateocc="dateocc" :mNumber="mNumber" :fNumber="fNumber"/>
@@ -75,6 +75,7 @@ import HomeTitle from "@/views/component/homeTitle.vue"
 const title = '洛杉矶犯罪数据洞察系统';
 //graph显示标签
 const isSankey = ref(false);
+const isAge = ref(false);
 const isGender = ref(false);
 const isScatter = ref(false);
 const isHeat = ref(false);
@@ -153,6 +154,8 @@ const linkdata = ref({
           mace_pepper_spray_IC: 105,
           mace_pepper_spray_JA: 1,
 })
+//年龄数据
+const ageData = ref([])
 //性别雨量图数据
 const dateocc = ref([])
 const fNumber = ref([])
@@ -193,7 +196,9 @@ const heatShow = ()=>{
 }
 // 按月份请求数据函数
 const selectByMonth = async()=>{
+  //取消显示桑基图和玫瑰图
   isSankey.value = false
+  isAge.value = false
   let result = await dataSelectService(month);
   crimedata.value = result.data
   ElMessage.success(result.msg ? result.msg : '查询成功')
@@ -207,7 +212,8 @@ const selectByMonth = async()=>{
   if(!isHeat.value){
     isScatter.value = true
   }
-  updateOptiondata()
+  updateLinkData()
+  updateAgeData()
 }
 
 // 请求热力图数据函数
@@ -232,7 +238,8 @@ const countGender = async()=>{
   isGender.value = true
 }
 
-function updateOptiondata(){
+// 武器数据更新函数
+function updateLinkData(){
     let i=0;
     for (let key in linkdata.value) {
       linkdata.value[key] = 0;
@@ -446,12 +453,54 @@ function updateOptiondata(){
     console.log("武器数据",linkdata.value)
     isSankey.value = true
 }
-
+// 年龄数据更新函数
+function updateAgeData(){
+  // 计算年龄范围的统计
+  ageData.value = crimedata.value.reduce((acc, curr) => {
+  const age = curr.victage;
+  if (age >= 0 && age < 10) {
+    acc[0].value++;
+  } else if (age >= 10 && age < 20) {
+    acc[1].value++;
+  } else if (age >= 20 && age < 30) {
+    acc[2].value++;
+  } else if (age >= 30 && age < 40) {
+    acc[3].value++;
+  } else if (age >= 40 && age < 50) {
+    acc[4].value++;
+  } else if (age >= 50 && age < 60) {
+    acc[5].value++;
+  } else if (age >= 60 && age < 70) {
+    acc[6].value++;
+  } else if (age >= 70 && age < 80) {
+    acc[7].value++;
+  } else if (age >= 80 && age < 90) {
+    acc[8].value++;
+  } else if (age >= 90 && age <= 100) {
+    acc[9].value++;
+  }
+    return acc;
+  }, [
+    { value: 0, name: '0-10' },
+    { value: 0, name: '10-20' },
+    { value: 0, name: '20-30' },
+    { value: 0, name: '30-40' },
+    { value: 0, name: '40-50' },
+    { value: 0, name: '50-60' },
+    { value: 0, name: '60-70' },
+    { value: 0, name: '70-80' },
+    { value: 0, name: '80-90' },
+    { value: 0, name: '90-100' }
+  ]);
+  // ageRanges 数组包含了统计结果
+  console.log("年龄统计数据",ageData);
+  //显示玫瑰图
+  isAge.value = true
+}
 onMounted(() => {
   countNumber()
   selectByMonth(month)
   countGender()
-
 });
 </script>
 
