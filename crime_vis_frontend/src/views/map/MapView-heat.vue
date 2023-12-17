@@ -77,19 +77,18 @@ export default {
         },
     });
 }
-let heatmap = new mapvgl.HeatmapLayer({
+let heatmap = new mapvgl.HeatGridLayer({
     size: 400, // 单个点绘制大小
     max: 40, // 最大阈值
     height: 0, // 最大高度，默认为0
+	style: 'normal',
     unit: "m", // 单位，m:米，px: 像素
     gradient: {
         // 对应比例渐变色
-        0.1: "rgba(0, 0, 255, 1)",
-        0.3: "rgba(0, 255, 0, 1)",
-        0.5: "rgba(255, 255, 0, 1)",
-        0.7: "rgba(255, 165, 0, 1)",
-        0.9: "rgba(255, 0, 0, 1)",
-        1: "rgba(139, 0, 0, 1)",
+        0.0: 'rgb(50, 50, 256)',
+                0.1: 'rgb(50, 250, 56)',
+                0.5: 'rgb(250, 250, 56)',
+                1.0: 'rgb(250, 50, 56)'
     },
 });
     view.addLayer(heatmap);
