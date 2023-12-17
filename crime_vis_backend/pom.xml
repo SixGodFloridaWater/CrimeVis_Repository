@@ -14,7 +14,7 @@
     <name>ConsultationSystem</name>
     <description>可视化系统</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>8</java.version>
         <mybatisplus.version>3.5.2</mybatisplus.version>
         <druid.version>1.1.18</druid.version>
         <log4j.version>1.2.17</log4j.version>
@@ -121,5 +121,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
