@@ -14,26 +14,41 @@ data() {
     categories: [
     {
         "name": "暴力犯罪",
+        itemStyle:{
+            color: "#B22222" //红色
+        },
         "keyword": {},
         "base": "网格关系"
     },
     {
         "name": "财产犯罪",
+        itemStyle:{
+            color: "#FF8C00" //橙色
+        },
         "keyword": {},
         "base": "网格关系"
     },
     {
         "name": "性犯罪",
+        itemStyle:{
+            color: "#68228B" //紫色
+        },
         "keyword": {},
         "base": "网格关系"
     },
     {
         "name": "威胁和违反法律",
+        itemStyle:{
+            color: "#27408B" //蓝色
+        },
         "keyword": {},
         "base": "网格关系"
     },
     {
         "name": "白领犯罪",
+        itemStyle:{
+            color: "#556B2F" //绿色
+        },
         "keyword": {},
         "base": "网格关系"
     },
@@ -52,7 +67,6 @@ data() {
     //暴力犯罪
     {
         name: "暴力犯罪",
-        color: "#ff7f50",
         id: "10",
         category: 0,
         x: 10,
@@ -135,7 +149,6 @@ data() {
     //财产犯罪
     {
         name: "财产犯罪",
-        color: "#91cc75",
         id: "20",
         category: 1,
         symbolSize: 30
@@ -186,7 +199,6 @@ data() {
     //性犯罪
     {
         name: "性犯罪",
-        color: "#91cc75",
         id: "30",
         category: 2,
         symbolSize: 30
@@ -226,7 +238,6 @@ data() {
     //威胁和违反法律
     {
         name: "威胁和违反法律",
-        color: "#91cc75",
         id: "40",
         category: 3,
         symbolSize: 30
@@ -272,7 +283,6 @@ data() {
     //白领犯罪
     {
         name: "白领犯罪",
-        color: "#91cc75",
         id: "50",
         category: 4,
         symbolSize: 30
@@ -318,34 +328,6 @@ data() {
 
     //关系数据
     links: [
-    // {
-    //   source: "10",
-    //   target: "20",
-    // },
-    // {
-    //   source: "20",
-    //   target: "30",
-    // },
-    // {
-    //   source: "30",
-    //   target: "40",
-    // },
-    // {
-    //   source: "40",
-    //   target: "50",
-    // },
-    // {
-    //   source: "50",
-    //   target: "10",
-    // },
-    {
-        source: "15",
-        target: "30",
-    },
-    {
-        source: "13",
-        target: "20",
-    },
     //二级关系
     {
         source: "10",
@@ -493,9 +475,6 @@ mounted() {
     let myChart = echarts.init(this.$refs.demoh);
     let option = {
     legend: {
-        textStyle:{
-            color:'#FFFFFF'
-        },
         data: [
         {
             name :'暴力犯罪',
@@ -525,31 +504,17 @@ mounted() {
         categories: this.categories,
         layout: "force", //引导布局
         roam: true, //开启平移与缩放
-        // coordinateSystem : null,//坐标系可选
-        // xAxisIndex : 0, //x轴坐标 有多种坐标系轴坐标选项
-        // yAxisIndex : 0, //y轴坐标
-        // 根据value放缩节点
-        
         draggable : true,//节点是否可以拖拽
-        // itemStyle: {
-        //   color: "#95dcb2"
-        // },
         label: { // 图形上的文字
             show: true,
             position: "right",
-            distance: 6, // 距离图形的位置
-            fontSize: 12,
-            // color: "#FFFFFF"
-            //align: "center"
+            distance: 5, // 距离图形的位置
+            fontSize: 10,
         },
-        // circular: {
-        //   rotateLabel: true
-        // },
         force: { // 设置间距
-            repulsion: 50, // 点之间的间距
-            qravity: 0.01, // 距离中心点的位置
-            edgeLength: 100, // 两边点的距离
-            //initLayout: [this.nodes.x,this.nodes.y],
+            repulsion: 45, // 点之间的间距
+            qravity: 1.0, // 距离中心点的位置
+            edgeLength: [30,60], // 两边点的距离
             layoutAnimation : true,
         },
         links: this.links,
