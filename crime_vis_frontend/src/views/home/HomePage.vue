@@ -25,12 +25,26 @@
       <section class="itemCenter">
         <div class="map">
           <el-button 
+            v-if="isHeat"
             class="map-button"
-            type="primary"
             size="large"
             @click="handleMapChange()"
+            plain
+            text
+            bg
           >
-            点击切换散点图/热力图
+            点击切换散点图
+          </el-button>
+          <el-button 
+            v-if="isScatter"
+            class="map-button"
+            size="large"
+            @click="handleMapChange()"
+            plain
+            text
+            bg
+          >
+            点击切换热力图
           </el-button>
           <MapViewScatter v-if="isScatter" :data="data" :geoCoordMap="geoCoordMap"/>
           <MapViewHeat v-if="isHeat" :points="points"/>
@@ -515,11 +529,11 @@ header{
 }
 .title_wrap {
   margin-top: 5px;
-height: 50px;
-/* background-image: url("../../assets/img/top.png"); */
-background-size: cover;
-background-position: center center;
-position: relative;
+  height: 50px;
+  /* background-image: url("../../assets/img/top.png"); */
+  background-size: cover;
+  background-position: center center;
+  position: relative;
 }
 .guang {
   position: absolute;
