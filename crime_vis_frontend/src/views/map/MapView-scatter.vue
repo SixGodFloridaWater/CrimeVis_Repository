@@ -13,8 +13,6 @@ mounted() {
   const myChart = echarts.init(chartDom);
   const data = this.data;
   const geoCoordMap = this.geoCoordMap;
-  console.log(data)
-  console.log(geoCoordMap)
   // const data = [
   // { name: '海门', value: 9 },
   // { name: '鄂尔多斯', value: 12 },
@@ -927,34 +925,34 @@ mounted() {
           }
   },
   
-  series: [
-      {
-      type: 'effectScatter',
-      coordinateSystem: 'bmap',
-      data: convertData(data),
-      symbolSize: 7,
-      encode: {
-          value: 2
-      },
-      
-      itemStyle: {
-          color: 'red',
-          shadowBlur: 10,
-          shadowColor: '#434343'
-      },
-	  showEffectOn: 'render',
-	        rippleEffect: {
-	          brushType: 'stroke'
-	        },
-      // emphasis: {
-      // scale: true
-      // },
-      zlevel: 1
-      }
-  ]
-  };
+    series: [
+        {
+        type: 'effectScatter',
+        coordinateSystem: 'bmap',
+        data: convertData(data),
+        symbolSize: 7,
+        encode: {
+            value: 2
+        },
+        
+        itemStyle: {
+            color: 'red',
+            shadowBlur: 10,
+            shadowColor: '#434343'
+        },
+        showEffectOn: 'render',
+        rippleEffect: {
+            brushType: 'stroke'
+        },
+        // emphasis: {
+        // scale: true
+        // },
+        zlevel: 1
+        }
+    ]
+    };
 
-  option && myChart.setOption(option);
+    option && myChart.setOption(option);
 }
 };
 </script>
