@@ -328,6 +328,26 @@ data() {
 
     //关系数据
     links: [
+    {
+        source: "13",
+        target: "20",
+    },
+    {
+        source: "19",
+        target: "20",
+    },
+    {
+        source: "15",
+        target: "30",
+    },
+    {
+        source: "51",
+        target: "20",
+    },
+    {
+        source: "53",
+        target: "20",
+    },
     //二级关系
     {
         source: "10",
